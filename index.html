@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GI2E — Site en cours de refonte</title>
+  <meta name="description"
+    content="Le site web de GI2E est actuellement en cours de refonte. Nos services de pré-collecte, collecte, transport de déchets et nettoiement urbain demeurent pleinement opérationnels." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      /* border: 1px solid red; */
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 80px;
+      height: 80px;
+    }
+
+
+    :root {
+      --primary: #009e49;
+      --primary-hover: #007a3b;
+      --secondary: #95c11f;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: rgba(149, 193, 31, 0.3);
+    }
+
+    /* ── Page Wrapper ── */
+    .page {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Background ── */
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      background: url('public/maintenance/fond.jpg') center / cover no-repeat;
+    }
+
+    .bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.70));
+    }
+
+    /* ── Content ── */
+    .content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 720px;
+      padding: 0 20px;
+      text-align: center;
+      color: #fff;
+      animation: fadeUp 0.7s ease-out both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Logo */
+    .logo {
+      height: 56px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      margin-bottom: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-radius: 999px;
+    }
+
+    .ping-dot {
+      position: relative;
+      width: 8px;
+      height: 8px;
+    }
+
+    .ping-dot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--secondary);
+      animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    .ping-dot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--secondary);
+    }
+
+    @keyframes ping {
+
+      75%,
+      100% {
+        transform: scale(2.2);
+        opacity: 0;
+      }
+    }
+
+    /* Heading */
+    .heading {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.75rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .heading .accent {
+      color: var(--secondary);
+    }
+
+    /* Description */
+    .description {
+      font-size: clamp(0.8rem, 1.8vw, 1.1rem);
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 300;
+      max-width: 540px;
+      margin: 0 auto 22px;
+      line-height: 1.7;
+    }
+
+    /* Notice Card */
+    .notice {
+      display: inline-block;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 16px 24px;
+      margin-bottom: 28px;
+    }
+
+    .notice-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .notice-header svg {
+      width: 16px;
+      height: 16px;
+      color: var(--secondary);
+      fill: var(--secondary);
+      flex-shrink: 0;
+    }
+
+    .notice-header span {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--secondary);
+    }
+
+    .notice p {
+      font-size: clamp(0.75rem, 1.4vw, 0.875rem);
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+    }
+
+    .notice strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Actions */
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 24px -6px rgba(0, 158, 73, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(0, 158, 73, 0.4);
+    }
+
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.25s;
+    }
+
+    .btn-primary:hover svg {
+      transform: translateY(2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 14px;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      text-decoration: none;
+      border-radius: 14px;
+      transition: all 0.25s;
+    }
+
+    .btn-secondary:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .btn-secondary svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Merci */
+    .merci {
+      margin-top: 28px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: rgba(255, 255, 255, 0.28);
+      font-weight: 500;
+    }
+
+    /* Bottom bar */
+    .bottom-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(149, 193, 31, 0.4), transparent);
+    }
+
+    .bottom-text {
+      position: absolute;
+      bottom: 14px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.18);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      z-index: 10;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .logo {
+        height: 44px;
+        margin-bottom: 14px;
+      }
+
+      .badge {
+        font-size: 10px;
+        padding: 5px 12px;
+        margin-bottom: 16px;
+      }
+
+      .heading {
+        margin-bottom: 14px;
+      }
+
+      .description {
+        margin-bottom: 16px;
+      }
+
+      .notice {
+        padding: 14px 18px;
+        margin-bottom: 22px;
+      }
+
+      .actions {
+        gap: 8px;
+      }
+
+      .btn-primary {
+        padding: 11px 22px;
+        font-size: 13px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn-secondary {
+        font-size: 13px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .merci {
+        margin-top: 20px;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .logo {
+        height: 52px;
+      }
+    }
+
+    @media (max-height: 700px) {
+      .logo {
+        height: 40px;
+        margin-bottom: 10px;
+      }
+
+      .badge {
+        margin-bottom: 12px;
+      }
+
+      .heading {
+        margin-bottom: 10px;
+      }
+
+      .description {
+        margin-bottom: 14px;
+      }
+
+      .notice {
+        padding: 12px 18px;
+        margin-bottom: 18px;
+      }
+
+      .merci {
+        margin-top: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- Background -->
+    <div class="bg-image">
+      <div class="bg-overlay"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="logo">
+        <img src="public/logo.png" alt="GI2E" />
+      </div>
+
+      <div class="badge">
+        <span class="ping-dot"></span>
+        Site en cours de refonte
+      </div>
+
+      <h1 class="heading">
+        Un nouveau souffle <br />pour <span class="accent">GI2E</span>
+      </h1>
+
+      <p class="description">
+        Dans une dynamique d'amélioration continue, nous procédons à la refonte
+        de notre site web afin de mieux valoriser nos activités et renforcer l'accès à l'information.
+      </p>
+
+      <div class="notice">
+        <div class="notice-header">
+          <svg viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+              clip-rule="evenodd" />
+          </svg>
+          <span>Services opérationnels</span>
+        </div>
+        <p>
+          Pré-collecte, collecte, transport de déchets et nettoiement urbain
+          demeurent <strong>pleinement opérationnels</strong>.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a href="brochure.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          Brochure Institutionnelle
+        </a>
+        <a href="mailto:contact@gi2e.ci" class="btn-secondary">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Nous contacter
+        </a>
+      </div>
+
+      <p class="merci">Merci pour votre confiance renouvelée</p>
+    </div>
+
+    <div class="bottom-line"></div>
+    <div class="bottom-text">GI2E — Groupement d'Ingénierie de l'Eau et de l'Environnement</div>
+  </div>
+</body>
+
+</html>
